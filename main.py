@@ -4,210 +4,282 @@ from telebot import types
 import threading, os, re
 from collections import deque
 
-from m1 import (
-    go0, go1, go2, go3, go4,
-    go5, go6, go7, go8, go9,
-    go10, go11, go12, go13, go14
-)
+from m1 import go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10,go11,go12,go13,go14
 
-# =========================
-# TELEGRAM CONFIG
-# =========================
-TOKEN = "8399279421:AAHiFfuxnTXns1zfrTPbhCzySWLqmNBGjSE"
-bot = telebot.TeleBot(TOKEN, parse_mode="HTML", threaded=False)
+token = "8399279421:AAHiFfuxnTXns1zfrTPbhCzySWLqmNBGjSE"
+bot = telebot.TeleBot(token, parse_mode="HTML")
 
-# =========================
-# AUTH
-# =========================
-OWNER_ID = "7954343626"
-allowed_users = {OWNER_ID}
+# -------------------------
+# OWNER & AUTHORIZED USERS
+# -------------------------
+owner_id = "7954343626"
+allowed_users = set([owner_id])
 AUTH_FILE = "authorized_users.txt"
 
 if os.path.exists(AUTH_FILE):
-    with open(AUTH_FILE) as f:
-        allowed_users |= {x.strip() for x in f if x.strip()}
+    with open(AUTH_FILE, "r") as f:
+        for line in f:
+            allowed_users.add(line.strip())
 
+# -------------------------
+# CONFIG
+# -------------------------
+WORKERS = 3
+FUNCTIONS = [go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10,go11,go12,go13,go14]
+
+# -------------------------
+# GLOBAL SHARED STATE
+# -------------------------
+card_queue = None
+func_index = 0
+queue_lock = threading.Lock()
+
+# -------------------------
+# Track running files per user
+# -------------------------
+user_running_files = {}  # user_id -> True/False
+
+# -------------------------
+# Save authorized users to file
+# -------------------------
 def save_users():
     with open(AUTH_FILE, "w") as f:
-        for u in allowed_users:
-            f.write(u + "\n")
+        for uid in allowed_users:
+            f.write(f"{uid}\n")
 
-# =========================
-# GLOBAL CONFIG
-# =========================
-WORKERS = 3
-FUNCTIONS = [go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10, go11, go12, go13, go14]
-SAVE_FILE = "unfortunately.txt"
-
-card_queue = deque()
-queue_lock = threading.Lock()
-edit_lock = threading.Lock()
-stop_event = threading.Event()
-
-user_running_files = {}
-
-# =========================
-# AUTH COMMAND
-# =========================
+# -------------------------
+# AUTH SYSTEM FOR OWNER
+# -------------------------
 @bot.message_handler(commands=["auth"])
 def auth_user(message):
-    if str(message.chat.id) != OWNER_ID:
-        bot.reply_to(message, "❌ Owner only")
+    if str(message.chat.id) != owner_id:
+        bot.reply_to(message, "❌ Only Owner can use /auth command.")
         return
 
     try:
-        _, action, uid = message.text.split()
-        if action == "add":
-            allowed_users.add(uid)
-            save_users()
-            bot.reply_to(message, f"✅ Authorized {uid}")
-        elif action == "remove":
-            allowed_users.discard(uid)
-            save_users()
-            bot.reply_to(message, f"⛔ Removed {uid}")
-    except:
-        bot.reply_to(message, "Usage: /auth add <id> | /auth remove <id>")
+        parts = message.text.split()
+        if len(parts) != 3:
+            bot.reply_to(message, "Usage:\n/auth add <user_id>\n/auth remove <user_id>")
+            return
 
-# =========================
-# START
-# =========================
+        action = parts[1].lower()
+        user_id = parts[2]
+
+        if action == "add":
+            allowed_users.add(user_id)
+            save_users()
+            bot.reply_to(message, f"✅ Authorized: {user_id}")
+
+        elif action == "remove":
+            allowed_users.discard(user_id)
+            save_users()
+            bot.reply_to(message, f"⛔ Removed: {user_id}")
+
+        else:
+            bot.reply_to(message, "Usage:\n/auth add <user_id>\n/auth remove <user_id>")
+
+    except Exception as e:
+        bot.reply_to(message, f"Error: {str(e)}")
+
+# -------------------------
+# START COMMAND
+# -------------------------
 @bot.message_handler(commands=["start"])
 def start(message):
-    if str(message.chat.id) not in allowed_users:
-        bot.reply_to(message, "❌ Not authorized")
+    user_id = str(message.chat.id)
+    if user_id not in allowed_users:
+        bot.reply_to(message, "❌ You are not authorized to use this bot.")
         return
-    bot.reply_to(message, "📂 Send combo file")
+    bot.reply_to(message, "Send the file now")
 
-# =========================
-# WORKER FUNCTION
-# =========================
-def process_cards(message, msg_id, total, stats):
+SAVE_FILE = "unfortunately.txt"
+# -------------------------
+def process_cards(message, ko, total, stats):
+    global func_index, card_queue
     dd, live, ch, ccn, cvv, lowfund = stats
-    session = requests.Session()
 
-    while not stop_event.is_set():
+    while True:
         with queue_lock:
             if not card_queue:
+                # run အပြီးမှာ txt file ကို user ကိုပို့
+                if os.path.exists(SAVE_FILE):
+                    with open(SAVE_FILE, "rb") as f:
+                        bot.send_document(message.chat.id, f, caption="Here are the cards with 'Unfortunately' 😢")
+                    os.remove(SAVE_FILE)
                 return
-            cc = card_queue.popleft()
-            func = FUNCTIONS[len(card_queue) % len(FUNCTIONS)]
 
-        # BIN INFO
-        try:
-            r = session.get(
-                f"https://bins.antipublic.cc/bins/{cc[:6]}",
-                timeout=5
+            cc = card_queue.popleft()
+            func = FUNCTIONS[func_index]
+            func_index = (func_index + 1) % len(FUNCTIONS)
+
+        # STOP
+        if os.path.exists("stop.stop"):
+            bot.edit_message_text(
+                chat_id=message.chat.id,
+                message_id=ko,
+                text='STOP ✅\nBOT BY ➜ @strawhatchannel69'
             )
-            data = r.json()
+            os.remove("stop.stop")
+            return
+
+        try:
+            data = requests.get('https://bins.antipublic.cc/bins/'+cc[:6]).json()
         except:
             data = {}
 
-        brand = data.get("brand", "Unknown")
-        card_type = data.get("type", "Unknown")
-        country = data.get("country_name", "Unknown")
-        country_flag = data.get("country_flag", "")
-        bank = data.get("bank", "Unknown")
+        brand = data.get('brand','Unknown')
+        card_type = data.get('type','Unknown')
+        country = data.get('country_name','Unknown')
+        country_flag = data.get('country_flag','Unknown')
+        bank = data.get('bank','Unknown')
 
-        start = time.time()
+        start_time = time.time()
+
         try:
             last = str(func(cc))
         except:
             last = "ERROR"
 
-        exec_time = time.time() - start
+        time.sleep(5)
 
-        # RESULT
+        execution_time = time.time() - start_time
+
+        print(f"[{threading.current_thread().name}] {func.__name__} → {cc}")
+
+        # -----------------------------
+        # RESULT NORMALIZE
+        # -----------------------------
         if "succeeded" in last:
+            msg = f'''   
+𝐂𝐀𝐑𝐃: <code>{cc}</code>\n\n𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Transaction was successful 🔥</code>
+
+𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
+𝐁𝐚𝐧𝐤: <code>{bank}</code>
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝐓𝐢𝐦𝐞: <code>{"{:.1f}".format(execution_time)} second</code> 
+𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel69'''
             ch[0] += 1
-            result = "Transaction was successful"
+            bot.reply_to(message, msg)
+            result = "Transaction was successful"            
         elif "sufficient" in last.lower():
-            lowfund[0] += 1
+            msg = f'''   
+𝐂𝐀𝐑𝐃: <code>{cc}</code>\n\n𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>Insufficient Funds 🔥</code>
+
+𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
+𝐁𝐚𝐧𝐤: <code>{bank}</code>
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝐓𝐢𝐦𝐞: <code>{"{:.1f}".format(execution_time)} second</code> 
+𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel69'''
+            bot.reply_to(message, msg)
             result = "Insufficient Funds"
+            lowfund[0] += 1
         elif "requires_action" in last:
+            msg = f'''   
+𝐂𝐀𝐑𝐃: <code>{cc}</code>\n\n𝐑𝐞𝐬𝐩𝐨𝐧𝐬𝐞: <code>3D requires_action 🔥</code>
+
+𝐁𝐢𝐧 𝐈𝐧𝐟𝐨: <code>{cc[:6]}-{card_type} - {brand}</code>
+𝐁𝐚𝐧𝐤: <code>{bank}</code>
+𝐂𝐨𝐮𝐧𝐭𝐫𝐲: <code>{country} - {country_flag}</code>
+
+𝐓𝐢𝐦𝐞: <code>{"{:.1f}".format(execution_time)} second</code> 
+𝐁𝐨𝐭 𝐀𝐛𝐨𝐮𝐭: @strawhatchannel69'''
             cvv[0] += 1
-            result = "3D Secure Required"
+            bot.reply_to(message, msg)
+            result = "3D requires_action"
         elif "Unfortunately" in last:
-            dd[0] += 1
+            # ✅ append to txt file
             with open(SAVE_FILE, "a") as f:
                 f.write(cc + "\n")
-            result = "Unfortunately"
-        else:
             dd[0] += 1
-            result = "Declined"
+            result = last
+        else:
+          match = re.search(r'"message"\s*:\s*"([^"]+)"', last)
+          if match:
+          	result = match.group(1)
+          	dd[0] += 1
+          else:
+          	match = re.search(r'"errors"\s*:\s*\[(.*?)\]', last)
+          	if match:
+          		raw = match.group(1)
+          		items = re.findall(r'"([^"]+)"', raw)
+          		result = " | ".join(items) if items else "Unknown Error - Try Again 🚫"
+          		dd[0] += 1
+          	else:
+          		result = "Unknown Error - Try Again 🚫"
+          		dd[0] += 1
 
-        # INLINE BUTTON
-        kb = types.InlineKeyboardMarkup(row_width=1)
-        kb.add(
-            types.InlineKeyboardButton(f"CHARGED [{ch[0]}]", callback_data="x"),
-            types.InlineKeyboardButton(f"CVV [{cvv[0]}]", callback_data="x"),
-            types.InlineKeyboardButton(f"LOW FUNDS [{lowfund[0]}]", callback_data="x"),
-            types.InlineKeyboardButton(f"DECLINED [{dd[0]}]", callback_data="x"),
-            types.InlineKeyboardButton(f"TOTAL [{total}]", callback_data="x"),
-            types.InlineKeyboardButton("STOP", callback_data="stop")
+        mes = types.InlineKeyboardMarkup(row_width=1)
+
+        mes.add(
+            types.InlineKeyboardButton(f"• CHARGED ➜ [ {ch[0]} ] •", callback_data='x'),            
+            types.InlineKeyboardButton(f"• CVV ➜ [ {cvv[0]} ] •", callback_data='x'),
+            types.InlineKeyboardButton(f"• LOW FUNDS ➜ [ {lowfund[0]} ] •", callback_data='x'),
+            types.InlineKeyboardButton(f"• DECLINED ➜ [ {dd[0]} ] •", callback_data='x'),
+            types.InlineKeyboardButton(f"• TOTAL ➜ [ {total} ] •", callback_data='x'),
+            types.InlineKeyboardButton("[ STOP ]", callback_data='stop')
         )
 
-        # SAFE EDIT
-        with edit_lock:
-            try:
-                bot.edit_message_text(
-                    chat_id=message.chat.id,
-                    message_id=msg_id,
-                    text=f"""
-CARD: <code>{cc}</code>
+        bot.edit_message_text(
+            chat_id=message.chat.id,
+            message_id=ko,
+            text=f"""
+CARD: <code>{cc}</code>\n
 RESPONSE: <code>{result}</code>
 
-BIN: <code>{cc[:6]} | {brand} | {card_type}</code>
-BANK: <code>{bank}</code>
-COUNTRY: <code>{country} {country_flag}</code>
-
-TIME: <code>{exec_time:.1f}s</code>
+TIME: <code>{execution_time:.1f}s</code>
 WORKER: <b>{threading.current_thread().name}</b>
+GATEWAY: <b>{func.__name__}</b>
 """,
-                    reply_markup=kb
-                )
-            except:
-                pass
+            reply_markup=mes
+        )
 
-# =========================
-# FILE HANDLER
-# =========================
+# -------------------------
+user_running_files = {}
 @bot.message_handler(content_types=["document"])
 def main(message):
-    uid = str(message.chat.id)
-    if uid not in allowed_users:
+    user_id = str(message.chat.id)
+
+    if user_id not in allowed_users:
+        bot.reply_to(message, "You cannot use the bot to contact developers to purchase a bot subscription @strawhatchannel69")
         return
 
-    if user_running_files.get(uid):
-        bot.reply_to(message, "❌ Already running")
+    # ❌ check if user already has a file running
+    if user_running_files.get(user_id, False):
+        bot.reply_to(message, "❌ You already have a file running. Please wait until it finishes.")
         return
 
-    user_running_files[uid] = True
-    stop_event.clear()
+    # ✅ mark as running
+    user_running_files[user_id] = True
 
     try:
-        msg = bot.reply_to(message, "CHECKING... ⏳")
-        msg_id = msg.message_id
+        ko = bot.reply_to(message, "CHECKING....⌛").message_id
 
-        file = bot.get_file(message.document.file_id)
-        data = bot.download_file(file.file_path)
+        file_info = bot.get_file(message.document.file_id)
+        downloaded = bot.download_file(file_info.file_path)
 
         with open("combo.txt", "wb") as f:
-            f.write(data)
+            f.write(downloaded)
 
-        with open("combo.txt") as f:
+        with open("combo.txt", "r") as f:
             cards = [x.strip() for x in f if x.strip()]
 
-        card_queue.clear()
-        card_queue.extend(cards)
-
         total = len(cards)
-        stats = ([0], [0], [0], [0], [0], [0])
+
+        dd=[0]; live=[0]; ch=[0]; ccn=[0]; cvv=[0]; lowfund=[0]
+        stats = (dd, live, ch, ccn, cvv, lowfund)
+
+        # 🔥 init queue
+        global card_queue, func_index
+        card_queue = deque(cards)
+        func_index = 0
 
         threads = []
         for i in range(WORKERS):
             t = threading.Thread(
                 target=process_cards,
-                args=(message, msg_id, total, stats),
+                args=(message, ko, total, stats),
                 name=f"Worker-{i}"
             )
             t.start()
@@ -218,27 +290,17 @@ def main(message):
 
         bot.edit_message_text(
             chat_id=message.chat.id,
-            message_id=msg_id,
-            text="CHECKED ✅"
+            message_id=ko,
+            text="CHECKED ✅\nBOT BY ➜ @strawhatchannel69"
         )
 
-        if os.path.exists(SAVE_FILE):
-            with open(SAVE_FILE, "rb") as f:
-                bot.send_document(message.chat.id, f)
-            os.remove(SAVE_FILE)
-
     finally:
-        user_running_files[uid] = False
-        stop_event.clear()
+        user_running_files[user_id] = False
 
-# =========================
-# STOP BUTTON
-# =========================
-@bot.callback_query_handler(func=lambda c: c.data == "stop")
+# -------------------------
+@bot.callback_query_handler(func=lambda call: call.data == 'stop')
 def stop_bot(call):
-    stop_event.set()
-    bot.answer_callback_query(call.id, "Stopped")
+    open("stop.stop", "w").close()
 
-# =========================
 print("BOT STARTED")
 bot.infinity_polling(timeout=60, long_polling_timeout=60)
