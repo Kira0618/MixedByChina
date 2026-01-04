@@ -4,7 +4,7 @@ from telebot import types
 import threading, os, re
 from collections import deque
 
-from m1 import go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10,go11,go12,go13,go14
+from m1 import go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10,go11,go12,go13,go14, go15, go16
 
 token = "8399279421:AAHiFfuxnTXns1zfrTPbhCzySWLqmNBGjSE"
 bot = telebot.TeleBot(token, parse_mode="HTML")
@@ -25,7 +25,7 @@ if os.path.exists(AUTH_FILE):
 # CONFIG
 # -------------------------
 WORKERS = 3
-FUNCTIONS = [go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10,go11,go12,go13,go14]
+FUNCTIONS = [go0, go1, go2, go3, go4, go5, go6, go7, go8, go9, go10,go11,go12,go13,go14, go15, go16]
 
 # -------------------------
 # GLOBAL SHARED STATE
