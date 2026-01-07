@@ -200,7 +200,7 @@ def process_cards(message, ko, total, stats):
           	result = match.group(1)
           	dd[0] += 1
           else:
-          	match = re.search(r'"errors"\s*:\s*\[(.*?)\]', last)
+          	match = last
           	if match:
           		raw = match.group(1)
           		items = re.findall(r'"([^"]+)"', raw)
